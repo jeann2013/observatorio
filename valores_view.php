@@ -27,7 +27,7 @@ $var_accion = $_SESSION['action'];
   <title>Valores</title>
 </head>
 <body onload="validar_acciones(<?php echo $var_accion; ?>)">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
 <script>
   function eliminar_registro(id){
 
@@ -203,7 +203,6 @@ $var_accion = $_SESSION['action'];
 </html>
 <?php validar_acciones(); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-
+<script src="bootstrap/js/bootstrap.min.js" ></script>
 
 

@@ -24,7 +24,7 @@ if(isset($_POST)) {
   <title>Valores</title>
 </head>
 <body>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
 <form action="valores.php" method="post" name="form1">
 <table class="table" border="0">
   <tr class="active">
@@ -196,7 +196,6 @@ function buscar_indicadores(id_cate){
   }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-
+<script src="bootstrap/js/bootstrap.min.js" ></script>
 
 
