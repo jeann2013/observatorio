@@ -1,0 +1,7 @@
+1;"Indicadores generales";"General indicators";"Indicadores gerais"
+2;"Transporte carretero";"Road transport";"Transporte rodoviário"
+3;"Transporte ferroviario";"Railway transport";"Transporte ferroviário"
+4;"Transporte aéreo";"Air transport";"Transporte aéreo"
+5;"Transporte marítimo y fluvial";"Water transport";"Transporte aquaviário"
+6;"Transporte por tubería";"Conveyor transport";"Transporte por tubería"
+7;"Indicadores logísticos";"Logistics indicators";"Indicadores logísticos"

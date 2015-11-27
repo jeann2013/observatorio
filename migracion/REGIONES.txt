@@ -1,0 +1,4 @@
+"AC";"América Central y México";"completar";"Central America and Mexico"
+"CC";"Caribe";"completar";"Caribbean countries"
+"CS";"Cono sur";"completar";"Southern cone"
+"PA";"Países andinos";"completar";"Andean countries"

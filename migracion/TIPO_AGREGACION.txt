@@ -1,0 +1,5 @@
+0;"Ninguna"
+1;"Suma"
+2;"Promedio"
+3;"Máximo"
+4;"Mínimo"
