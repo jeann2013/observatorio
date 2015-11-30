@@ -121,7 +121,7 @@ $var_accion = $_SESSION['action'];
   <tr class="info">
     <th>Id</td>
     <th>Indicador</td>
-    <th>id Pais</td>
+    <th>Pais</td>
     <th>Año</td>
     <th>Id Entidad</td>
     <th>Valor</td>
