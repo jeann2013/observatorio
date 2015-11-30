@@ -30,12 +30,12 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Datos <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="valores_view.php">Valores</a></li>
-                    <li><a href="#">Entidades</a></li>
-                    <li><a href="#">Indicadores</a></li>
-                    <li role="separator" class="divider"></li>
+                    <!-- <li><a href="#">Entidades</a></li> -->
+                    <li><a href="indicadores_view.php">Indicadores</a></li>
+                    <!-- <li role="separator" class="divider"></li>
                     <li class="dropdown-header">test1</li>
                     <li><a href="#">test2</a></li>
-                    <li><a href="#">test3</a></li>
+                    <li><a href="#">test3</a></li> -->
                   </ul>
                 </li>
               </ul>

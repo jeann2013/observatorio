@@ -2,6 +2,7 @@
 if (!isset($_SESSION)){
   session_start();
 }
+
 include ("db.php");
 $conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
 
@@ -23,15 +24,15 @@ if(isset($_POST)) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Valores</title>
+  <title>Indicadores</title>
 </head>
 <body>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
-<form action="valores.php" method="post" name="form1">
+<form action="indicadores.php" method="post" name="form1">
 <table class="table" border="0">
   <tr class="active">
     <td colspan="2">
-    <a title="Regresar" href="valores_view.php" class="btn btn-primary" role="button"><?php echo "Regresar"; ?></a>
+    <a title="Regresar" href="indicadores_view.php" class="btn btn-primary" role="button"><?php echo "Regresar"; ?></a>
     </td>
   </tr>
    
@@ -41,70 +42,78 @@ if(isset($_POST)) {
 <table class="table table-striped" border="0">
   <tr class="">
     <td colspan="2">
-    <div align="center">INGRESAR VALORES</div>
+    <div align="center">INGRESAR INDICADOR</div>
     </td>
   </tr>
   <tr class="">
     <td>Categoria:</td>
-    <td><?php echo select13("id", "ES", $var_id_categorias_indicadores, "select id,ES from categorias_indicadores order by id", "categorias_indicadores", 1,3,0,$conn,"buscar_indicadores(this.value)"); ?></td>
+    <td><?php echo select13("id", "ES", $var_id_categorias_indicadores, "select id,ES from categorias_indicadores order by id", "categorias_indicadores", 1,3,0,$conn,""); ?></td>
   </tr>
   <tr class="">
     <td>Indicador:</td>
     <td>
-    <?php //echo select13("id", "ES", $var_id_indicadores, "select id,ES from categorias_indicadores order by id", "categorias_indicadores", 1,3,0,$conn,"",""); ?>
-    <select name="id_indic" id="id_indic">
-       
-     </select>
+    <input type="text" name="nombre_es" id="nombre_es" class="form-control" placeholder="ES" required>
+    <input type="text" name="nombre_en" id="nombre_en" class="form-control" placeholder="EN" required>
+    <input type="text" name="nombre_pt" id="nombre_pt" class="form-control" placeholder="PT" required>
     </td>
-  </tr>
-  <tr>
-    <td>Pais:</td>
-    <td><?php  echo select13("id", "nombre", $var_id_pais, "select id,nombre from paises_mesoamericanos order by id", "id_pais", 1,1,0,$conn,"buscar_entidad(this.value)"); ?></td>
-  </tr>
-  <tr>
-    <td>Año:</td>
-    <td><input type="text" id="ano" name="ano" class="form-control" placeholder="Año" required></td>
-  </tr>
-    <td>Entidad:</td>
-     <td>
-     <?php  
-     //echo select13("id_ent", "nombre", $var_id_pais, "select id_ent,entidad as nombre from entidad order by id_ent", "id_ent", 1,1,0,$conn,"",""); 
-     ?>
-     <select name="id_ent" id="id_ent">
-       
-     </select>
-     </td>
-  </tr>
-  <!-- <tr>
-    <td>Fuente:</td>
-    <td><input type="text" id="fuenta" readonly="true" class="form-control" placeholder="Fuente" required></td>
-  </tr> -->
-  <tr>
-    <td>Valor</td>
-    <td><input type="text" name="valor" id="valor" class="form-control" placeholder="Valor" required></td>
   </tr>
   
   <tr>
-    <td>Comentarios:</td>
+    <td>Grupo:</td>
     <td>
-    <textarea class="form-control" rows="3" id="comentario_es" placeholder="Comentario ES"  name="comentario_es"></textarea>
-    <textarea class="form-control" rows="3" id="comentario_en" placeholder="Comentario EN"  name="comentario_en"></textarea>
-    <textarea class="form-control" rows="3" id="comentario_pt" placeholder="Comentario PT"  name="comentario_pt"></textarea>
+    <input type="text" name="grupo_es" id="grupo_es" class="form-control" placeholder="ES" >
+    <input type="text" name="grupo_en" id="grupo_en" class="form-control" placeholder="EN" >
+    <input type="text" name="grupo_pt" id="grupo_pt" class="form-control" placeholder="PT" >
     </td>
   </tr>
   <tr>
-    <td>Info. Sistematica:</td>
+    <td>Tipo:</td>
     <td>
-      <select name="info_sistematica" id="info_sistematica">
-        <option value="SI">SI</option>
-        <option value="NO">NO</option>
-      </select>
+    <input type="text" name="tipo_es" id="tipo_es" class="form-control" placeholder="ES" >
+    <input type="text" name="tipo_en" id="tipo_en" class="form-control" placeholder="EN" >
+    <input type="text" name="tipo_pt" id="tipo_pt" class="form-control" placeholder="PT" >
     </td>
   </tr>
-  <tr>
-    <td>Detalle Localización</td>
-    <td><textarea class="form-control" rows="3" id="detalle" placeholder="Detalle" required name="detalle"></textarea></td>
+   <tr>
+    <td>Unidades:</td>
+    <td>
+    <input type="text" name="unidades_es" id="unidades_es" class="form-control" placeholder="ES" >
+    <input type="text" name="unidades_en" id="unidades_en" class="form-control" placeholder="EN" >
+    <input type="text" name="unidades_pt" id="unidades_pt" class="form-control" placeholder="PT" >
+    </td>
   </tr>
+   <tr>
+    <td>Notas:</td>
+    <td>
+    <input type="text" name="notas_es" id="notas_es" class="form-control" placeholder="ES" >
+    <input type="text" name="notas_en" id="notas_en" class="form-control" placeholder="EN" >
+    <input type="text" name="notas_pt" id="notas_pt" class="form-control" placeholder="PT" >
+    </td>
+  </tr>
+   <tr>
+    <td>Tipo de Agregacion</td>
+    <td><input type="text" name="tipo_agregacion" id="tipo_agregacion" class="form-control" placeholder="Tipo de Agregacion" ></td>
+  </tr>
+  <tr>
+  <td>Regional</td>
+  <td>
+    <select name="regional" id="regional">
+      <option value="1">Si</option>
+      <option value="0">No</option>
+    </select>
+  </td>
+  </tr>
+   <tr>
+  <td>Decimales</td>
+  <td>
+    <select name="decimales" id="decimales">
+      <option value="1">Si</option>
+      <option value="0">No</option>
+    </select>
+  </td>
+  </tr>
+  
+  
   <tr>
     <td colspan="2">
     <div align="center">

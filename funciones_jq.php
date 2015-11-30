@@ -6,6 +6,12 @@ header('Access-Control-Allow-Origin: *');
 
 $var_accion = $_POST['accion'];
 
+if($var_accion == 'eliminar_registro_identificadores_jq'){
+	$id = $_POST['id'];
+	$var_resultado = eliminar_traduccion($id);
+	print json_encode($var_resultado);
+}
+
 if($var_accion == 'eliminar_registro_valores_jq'){
 	$id = $_POST['id'];
 	$var_resultado = eliminar_valores($id);

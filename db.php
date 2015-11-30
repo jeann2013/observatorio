@@ -1,5 +1,279 @@
 <?php
 
+/**
+ * 
+ * @todo Funcion que elimina la descripcion del traduccion para cada uno de los codificaciones
+ * @author Jean Carlos Nuñez
+ * @param  varchar $codificacion
+ * @param  int $id_indic
+ * @return string
+ *  
+ */ 
+
+function eliminar_traduccion($id_indic)
+{
+	global $conn;
+	
+	$sSql="select i.grupo,i.descripcion_indicador,i.tipo,i.unidades,i.notas from indicadores i	
+	where i.id_indic = $id_indic ";
+	$rs=phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	while ($row_rs = $rs->fetch_assoc()){
+		$retorno['grupo'] = $row_rs['grupo'];
+		$retorno['descripcion_indicador'] = $row_rs['descripcion_indicador'];
+		$retorno['tipo'] = $row_rs['tipo'];
+		$retorno['unidades'] = $row_rs['unidades'];
+		$retorno['notas'] = $row_rs['notas'];
+	}
+
+	$codificacion = $retorno['grupo'];
+	$sSql="delete from indicadores_traduccion where codificacion = '$codificacion' and id_indic = $id_indic";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+
+	$codificacion = $retorno['descripcion_indicador'];
+	$sSql="delete from indicadores_traduccion where codificacion = '$codificacion' and id_indic = $id_indic";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+
+	$codificacion = $retorno['tipo'];
+	$sSql="delete from indicadores_traduccion where codificacion = '$codificacion' and id_indic = $id_indic";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+
+	$codificacion = $retorno['unidades'];
+	$sSql="delete from indicadores_traduccion where codificacion = '$codificacion' and id_indic = $id_indic";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+
+	$codificacion = $retorno['notas'];
+	$sSql="delete from indicadores_traduccion where codificacion = '$codificacion' and id_indic = $id_indic";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+
+
+	$sSql="delete from  indicadores where id_indic = $id_indic";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	
+	$retorno['0']=1;
+	return $retorno;
+}
+
+
+/**
+ * 
+ * @todo Funcion que busca la codificacion del indicador
+ * @author Jean Carlos Nuñez
+ * @param  int $id
+ * @return string
+ *  
+ */ 
+
+function buscar_codificacion_indicador($id_indic)
+{
+	global $conn;
+
+	$sSql="select i.grupo,i.descripcion_indicador,i.tipo,i.unidades,i.notas from indicadores i	
+	where i.id_indic = $id_indic ";
+	$rs=phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	while ($row_rs = $rs->fetch_assoc()){
+		$retorno['grupo'] = $row_rs['grupo'];
+		$retorno['descripcion_indicador'] = $row_rs['descripcion_indicador'];
+		$retorno['tipo'] = $row_rs['tipo'];
+		$retorno['unidades'] = $row_rs['unidades'];
+		$retorno['notas'] = $row_rs['notas'];
+	}
+
+	return $retorno;
+}
+
+
+/**
+ * 
+ * @todo Funcion que modifica la descripcion del traduccion para cada uno de los codificaciones
+ * @author Jean Carlos Nuñez
+ * @param  varchar $codificacion
+ * @param  int $id_indic
+ * @return string
+ *  
+ */ 
+
+function modificar_traduccion($codificacion,$id_indic,$ES,$EN,$PT)
+{
+	global $conn;
+
+	$sSql="update indicadores_traduccion set ES='$ES',EN='$EN',PT='$PT' where codificacion = '$codificacion' and id_indic = $id_indic";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	return 1;
+}
+
+/**
+ * 
+ * @todo Funcion que busca la descripcion del traduccion para cada uno de los codificaciones
+ * @author Jean Carlos Nuñez
+ * @param  varchar $codificacion
+ * @param  int $id_indic
+ * @return string
+ *  
+ */ 
+
+function buscar_traduccion($codificacion,$id_indic)
+{
+	global $conn;
+
+	$sSql="select ES,EN,PT from indicadores_traduccion where codificacion = '$codificacion' and id_indic = $id_indic";
+	$rs=phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	while ($row_rs = $rs->fetch_assoc()){
+		$retorno['ES'] = utf8_encode($row_rs['ES']);
+		$retorno['EN'] = utf8_encode($row_rs['EN']);
+		$retorno['PT'] = utf8_encode($row_rs['PT']);
+	}
+
+	return $retorno;
+}
+
+
+/**
+ * 
+ * @todo Funcion que busca el id de indicador
+ * @author Jean Carlos Nuñez
+ * @return int
+ *  
+ */ 
+
+function buscar_id_indicador()
+{
+	global $conn;
+
+	$sSql="select max(id_indic) as id_indic from indicadores ";
+	$rs=phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	while ($row_rs = $rs->fetch_assoc()){
+		$retorno = $row_rs['id_indic']+1;
+	}
+	return $retorno;
+}
+
+
+/**
+ * 
+ * @todo Funcion retorna id de notas
+ * @author Jean Carlos Nuñez
+ * @param  char $id_indic
+ * @param  string $es
+ * @param  string $en
+ * @param  string $pt
+ * @return string
+ *  
+ */ 
+
+function generar_id_notas($id_indic,$es,$en,$pt)
+{
+	global $conn;
+
+	$id_codificacion = "INDIC_".$id_indic."_NOTA_ID";
+
+	$sSql="insert into indicadores_traduccion (codificacion,ES,EN,PT,id_indic) values('$id_codificacion','$es','$en','$pt',$id_indic)";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	
+	return $id_codificacion;
+
+}
+
+/**
+ * 
+ * @todo Funcion retorna id de unidades
+ * @author Jean Carlos Nuñez
+ * @param  char $id_indic
+ * @param  string $es
+ * @param  string $en
+ * @param  string $pt
+ * @return string
+ *  
+ */ 
+
+function generar_id_unidades($id_indic,$es,$en,$pt)
+{
+	global $conn;
+
+	$id_codificacion = "INDIC_".$id_indic."_UNID_ID";
+
+	$sSql="insert into indicadores_traduccion (codificacion,ES,EN,PT,id_indic) values('$id_codificacion','$es','$en','$pt',$id_indic)";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	
+	return $id_codificacion;
+
+}
+
+/**
+ * 
+ * @todo Funcion retorna id de tipo
+ * @author Jean Carlos Nuñez
+ * @param  char $id_indic
+ * @param  string $es
+ * @param  string $en
+ * @param  string $pt
+ * @return string
+ *  
+ */ 
+
+function generar_id_tipo($id_indic,$es,$en,$pt)
+{
+	global $conn;
+
+	$id_codificacion = "INDIC_".$id_indic."_TIPO_ID";
+
+	$sSql="insert into indicadores_traduccion (codificacion,ES,EN,PT,id_indic) values('$id_codificacion','$es','$en','$pt',$id_indic)";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	
+	return $id_codificacion;
+
+}
+
+
+/**
+ * 
+ * @todo Funcion retorna id de grupo
+ * @author Jean Carlos Nuñez
+ * @param  char $id_indic
+ * @param  string $es
+ * @param  string $en
+ * @param  string $pt
+ * @return string
+ *  
+ */ 
+
+function generar_id_grupo($id_indic,$es,$en,$pt)
+{
+	global $conn;
+
+	$id_codificacion = "INDIC_".$id_indic."_GRUPO_ID";
+
+	$sSql="insert into indicadores_traduccion (codificacion,ES,EN,PT,id_indic) values('$id_codificacion','$es','$en','$pt',$id_indic)";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	
+	return $id_codificacion;
+
+}
+
+/**
+ * 
+ * @todo Funcion retorna id de indicador
+ * @author Jean Carlos Nuñez
+ * @param  char $id_indic
+ * @param  string $es
+ * @param  string $en
+ * @param  string $pt
+ * @return string
+ *  
+ */ 
+
+function generar_id_indicador($id_indic,$es,$en,$pt)
+{
+	global $conn;
+
+	$id_codificacion = "INDIC_".$id_indic."_DESC_ID";
+
+	$sSql="insert into indicadores_traduccion (codificacion,ES,EN,PT,id_indic) values('$id_codificacion','$es','$en','$pt',$id_indic)";
+	phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
+	
+	return $id_codificacion;
+
+}
+
 
 /**
  * 
@@ -43,13 +317,17 @@ function buscar_categoria($id_indic)
 {
 	global $conn;
 
-	$sSql="select clase from indicadores where id_indic = $id_indic";
+	$sSql="select i.clase,it.ES,it.EN,it.PT from indicadores i,indicadores_traduccion it 
+	where i.id_indic = $id_indic and it.codificacion = i.descripcion_indicador";
 	$rs=phpmkr_query($sSql,$conn) or die("Fallo al ejecutar la consulta en la linea" . __LINE__ . ": " . phpmkr_error($conn) . '<br>SQL: ' . $sSql);
 	while ($row_rs = $rs->fetch_assoc()){
-		$clase = $row_rs['clase'];
+		$retorno['clase'] = $row_rs['clase'];
+		$retorno['ES'] = utf8_encode($row_rs['ES']);
+		$retorno['EN'] = $row_rs['EN'];
+		$retorno['PT'] = $row_rs['PT'];
 	}
 
-	return $clase;
+	return $retorno;
 }
 
 /**

@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION)){
+  session_start();
+}
 include ("db.php");
 $conn = phpmkr_db_connect(HOST, USER, PASS, DB, PORT);
 
@@ -30,9 +32,8 @@ while ($row_rs = $rs->fetch_assoc()){
 }
 
 $comentario = buscar_comentario($id_comentario,$id_indic);
-
-$id_categoria = buscar_categoria($id_indic);
-
+$id_categoria_general = buscar_categoria($id_indic);
+$id_categoria = $id_categoria_general['clase']
 
 ?>
 
@@ -105,9 +106,9 @@ $id_categoria = buscar_categoria($id_indic);
   <tr>
     <td>Comentarios:</td>
     <td>
-    <textarea class="form-control" rows="3" id="comentario_es" placeholder="Comentario ES"  required name="comentario_es"><?php echo $comentario['ES']; ?></textarea>
-    <textarea class="form-control" rows="3" id="comentario_en" placeholder="Comentario EN"  required name="comentario_en"><?php echo $comentario['EN']; ?></textarea>
-    <textarea class="form-control" rows="3" id="comentario_pt" placeholder="Comentario PT"  required name="comentario_pt"><?php echo $comentario['PT']; ?></textarea>
+    <textarea class="form-control" rows="3" id="comentario_es" placeholder="Comentario ES"   name="comentario_es"><?php echo $comentario['ES']; ?></textarea>
+    <textarea class="form-control" rows="3" id="comentario_en" placeholder="Comentario EN"   name="comentario_en"><?php echo $comentario['EN']; ?></textarea>
+    <textarea class="form-control" rows="3" id="comentario_pt" placeholder="Comentario PT"   name="comentario_pt"><?php echo $comentario['PT']; ?></textarea>
     </td>
   </tr>
   <tr>
